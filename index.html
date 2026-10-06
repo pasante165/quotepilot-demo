@@ -2,183 +2,745 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QuotePilot AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuotePilot AI Demo</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6f8fc;color:#172033}
-header{background:#111827;color:white;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:22px}.logo span{color:#60a5fa}
-main{max-width:760px;margin:auto;padding:28px 18px 70px}
-.hero{text-align:center;margin:20px 0 28px}
-.hero h1{font-size:34px;margin:0 0 12px}.hero p{color:#64748b;line-height:1.5}
-.card{background:white;border-radius:18px;padding:22px;box-shadow:0 8px 30px #0f172a12;margin-bottom:20px}
-h2{margin-top:0}
-label{display:block;font-weight:650;margin:16px 0 7px}
-select,input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;background:white}
-.baths{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.bath{padding:12px 4px;border:1px solid #cbd5e1;border-radius:10px;text-align:center;cursor:pointer;background:white}
-.bath.active{background:#2563eb;color:white;border-color:#2563eb}
-.checks label{font-weight:400;margin:10px 0}
-.checks input{width:auto;margin-right:8px}
-.estimate{background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:20px;margin-top:22px}
-.price{font-size:38px;font-weight:850;color:#1d4ed8;margin:5px 0}
-.breakdown{color:#475569;line-height:1.8;font-size:14px}
-button{width:100%;padding:15px;border:0;border-radius:11px;background:#2563eb;color:white;font-size:17px;font-weight:750;margin-top:18px}
-.demo{font-size:12px;color:#64748b;text-align:center;margin-top:10px}
-@media(max-width:520px){.baths{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:29px}}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:800;
+  font-size:22px;
+}
+
+.logo span{
+  color:#60a5fa;
+}
+
+main{
+  max-width:760px;
+  margin:auto;
+  padding:28px 18px 60px;
+}
+
+.hero{
+  text-align:center;
+  margin:20px 0 28px;
+}
+
+.hero h1{
+  font-size:34px;
+  margin:0 0 12px;
+}
+
+.hero p{
+  color:#64748b;
+  line-height:1.6;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(15,23,42,.08);
+  margin-bottom:22px;
+}
+
+h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-weight:650;
+  margin:16px 0 7px;
+}
+
+select,
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  background:white;
+  font-size:16px;
+}
+
+.baths{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.bath{
+  padding:12px 4px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  background:white;
+  font-weight:650;
+}
+
+.bath.active{
+  background:#2563eb;
+  color:white;
+  border-color:#2563eb;
+}
+
+.checks label{
+  font-weight:400;
+  margin:12px 0;
+}
+
+.checks input{
+  width:auto;
+  margin-right:8px;
+}
+
+.estimate{
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  border-radius:16px;
+  padding:20px;
+  margin-top:22px;
+}
+
+.price{
+  font-size:38px;
+  font-weight:850;
+  color:#1d4ed8;
+  margin:8px 0 14px;
+}
+
+.breakdown{
+  color:#475569;
+  line-height:1.8;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  font-size:17px;
+  font-weight:750;
+  cursor:pointer;
+  margin-top:18px;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.secondary{
+  background:#e2e8f0;
+  color:#172033;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.time-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.time{
+  padding:16px 10px;
+  border:2px solid #dbe3ee;
+  border-radius:12px;
+  background:white;
+  text-align:center;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.time.selected{
+  border-color:#2563eb;
+  background:#eff6ff;
+  color:#1d4ed8;
+}
+
+.summary{
+  background:#f8fafc;
+  border-radius:14px;
+  padding:16px;
+  margin:18px 0;
+  line-height:1.7;
+}
+
+.success{
+  text-align:center;
+  padding:18px 5px;
+}
+
+.success-icon{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:#dcfce7;
+  color:#15803d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 18px;
+  font-size:38px;
+  font-weight:800;
+}
+
+.demo{
+  font-size:12px;
+  color:#64748b;
+  text-align:center;
+  margin-top:16px;
+  line-height:1.5;
+}
+
+@media(max-width:520px){
+  .baths{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:29px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">QuotePilot <span>AI</span></div>
-<div>Instant Estimate</div>
+  <div class="logo">QuotePilot <span>AI</span></div>
+  <div>Instant Estimate</div>
 </header>
 
 <main>
-<section class="hero">
-<h1>Get Your Cleaning Estimate in 60 Seconds</h1>
-<p>Tell us about your home and see your estimated cleaning price instantly.</p>
-</section>
+
+<!-- ESTIMATE SCREEN -->
+
+<section id="estimateScreen" class="screen active">
+
+<div class="hero">
+  <h1>Get Your Cleaning Estimate in 60 Seconds</h1>
+  <p>
+    Tell us a few details about your home and receive an instant
+    estimated cleaning price.
+  </p>
+</div>
 
 <div class="card">
+
 <h2>Tell us about your home</h2>
 
-<label>ZIP Code</label>
-<input id="zip" inputmode="numeric" placeholder="78628">
+<label for="zip">ZIP Code</label>
+<input id="zip" type="text" inputmode="numeric" placeholder="78642">
 
-<label>Home Size</label>
+<label for="size">Home Size</label>
 <select id="size">
-<option value="0">Under 1,000 sq ft</option>
-<option value="15">1,000–1,499 sq ft</option>
-<option value="30" selected>1,500–1,999 sq ft</option>
-<option value="50">2,000–2,499 sq ft</option>
-<option value="75">2,500–2,999 sq ft</option>
-<option value="110">3,000+ sq ft</option>
+  <option value="0">Under 1,000 sq ft</option>
+  <option value="15">1,000–1,499 sq ft</option>
+  <option value="30">1,500–1,999 sq ft</option>
+  <option value="50">2,000–2,499 sq ft</option>
+  <option value="75" selected>2,500–2,999 sq ft</option>
+  <option value="110">3,000+ sq ft</option>
 </select>
 
-<label>Bedrooms</label>
+<label for="beds">Bedrooms</label>
 <select id="beds">
-<option value="1">1 bedroom</option>
-<option value="2">2 bedrooms</option>
-<option value="3" selected>3 bedrooms</option>
-<option value="4">4 bedrooms</option>
-<option value="5">5+ bedrooms</option>
+  <option value="1">1 Bedroom</option>
+  <option value="2">2 Bedrooms</option>
+  <option value="3">3 Bedrooms</option>
+  <option value="4" selected>4 Bedrooms</option>
+  <option value="5">5 Bedrooms</option>
+  <option value="6">6+ Bedrooms</option>
 </select>
 
 <label>Bathrooms</label>
-<div class="baths" id="baths">
-<div class="bath" data-bath="1" data-cost="0">1</div>
-<div class="bath" data-bath="1.5" data-cost="7">1.5</div>
-<div class="bath active" data-bath="2" data-cost="14">2</div>
-<div class="bath" data-bath="2.5" data-cost="21">2.5</div>
-<div class="bath" data-bath="3" data-cost="28">3</div>
-<div class="bath" data-bath="3.5" data-cost="35">3.5</div>
-<div class="bath" data-bath="4+" data-cost="42">4+</div>
+
+<div class="baths" id="bathChoices">
+  <div class="bath" data-bath="1" data-cost="0">1</div>
+  <div class="bath" data-bath="1.5" data-cost="7">1.5</div>
+  <div class="bath" data-bath="2" data-cost="14">2</div>
+  <div class="bath active" data-bath="2.5" data-cost="21">2.5</div>
+  <div class="bath" data-bath="3" data-cost="28">3</div>
+  <div class="bath" data-bath="3.5" data-cost="35">3.5</div>
+  <div class="bath" data-bath="4" data-cost="42">4</div>
+  <div class="bath" data-bath="4.5" data-cost="49">4+</div>
 </div>
 
-<label>Cleaning Type</label>
+<label for="service">Cleaning Type</label>
 <select id="service">
-<option value="110">Standard Cleaning</option>
-<option value="165" selected>Deep Cleaning</option>
-<option value="190">Move-In / Move-Out</option>
+  <option value="110">Standard Cleaning</option>
+  <option value="165" selected>Deep Cleaning</option>
+  <option value="190">Move-In / Move-Out Cleaning</option>
 </select>
 
-<label>Frequency</label>
+<label for="frequency">Frequency</label>
 <select id="frequency">
-<option value="0">One Time</option>
-<option value=".15">Weekly — save 15%</option>
-<option value=".10">Every 2 Weeks — save 10%</option>
-<option value=".05">Monthly — save 5%</option>
+  <option value="0" selected>One Time</option>
+  <option value=".15">Weekly</option>
+  <option value=".10">Every 2 Weeks</option>
+  <option value=".05">Monthly</option>
 </select>
 
 <label>Add-ons</label>
+
 <div class="checks">
-<label><input type="checkbox" class="addon" value="35"> Inside oven +$35</label>
-<label><input type="checkbox" class="addon" value="35"> Inside refrigerator +$35</label>
-<label><input type="checkbox" class="addon" value="25"> Pet hair treatment +$25</label>
+  <label>
+    <input class="addon" type="checkbox" value="35" checked>
+    Inside oven +$35
+  </label>
+
+  <label>
+    <input class="addon" type="checkbox" value="35">
+    Inside refrigerator +$35
+  </label>
+
+  <label>
+    <input class="addon" type="checkbox" value="25">
+    Pet hair treatment +$25
+  </label>
 </div>
 
 <div class="estimate">
+
 <div>Your estimated cleaning price</div>
-<div class="price" id="price">Calculating…</div>
-<div class="breakdown" id="breakdown"></div>
+
+<div class="price" id="price">$315–$355</div>
+
+<div class="breakdown">
+  <div><strong>Selection:</strong> <span id="selection"></span></div>
+  <div>Cleaning base: <span id="base"></span></div>
+  <div>Home size adjustment: <span id="sizeCost"></span></div>
+  <div>Bedroom adjustment: <span id="bedCost"></span></div>
+  <div>Bathroom adjustment: <span id="bathCost"></span></div>
+  <div>Add-ons: <span id="addonCost"></span></div>
+  <div id="discountLine"></div>
 </div>
 
-<button type="button">Check Available Cleaning Times</button>
-<div class="demo">QuotePilot demonstration — no payment or booking will be submitted.</div>
 </div>
+
+<button id="availabilityBtn" type="button">
+  Check Available Cleaning Times
+</button>
+
+<div class="demo">
+  QuotePilot demonstration — no payment or real booking will be submitted.
+</div>
+
+</div>
+</section>
+
+
+<!-- AVAILABILITY SCREEN -->
+
+<section id="availabilityScreen" class="screen">
+
+<div class="hero">
+  <h1>Choose a Cleaning Time</h1>
+  <p>
+    These appointment times are simulated for the QuotePilot demo.
+  </p>
+</div>
+
+<div class="card">
+
+<h2>Available appointments</h2>
+
+<div class="summary">
+  <strong>Your estimate:</strong>
+  <span id="bookingEstimate"></span>
+  <br>
+  <span id="bookingHome"></span>
+</div>
+
+<label>Select a time</label>
+
+<div class="time-grid">
+  <div class="time" data-time="Tomorrow · 9:00 AM">
+    Tomorrow<br>9:00 AM
+  </div>
+
+  <div class="time" data-time="Tomorrow · 1:00 PM">
+    Tomorrow<br>1:00 PM
+  </div>
+
+  <div class="time" data-time="Wednesday · 10:30 AM">
+    Wednesday<br>10:30 AM
+  </div>
+
+  <div class="time" data-time="Wednesday · 2:30 PM">
+    Wednesday<br>2:30 PM
+  </div>
+</div>
+
+<button id="continueBtn" type="button">
+  Continue
+</button>
+
+<button id="backBtn" class="secondary" type="button">
+  Back to Estimate
+</button>
+
+</div>
+</section>
+
+
+<!-- CONTACT SCREEN -->
+
+<section id="contactScreen" class="screen">
+
+<div class="hero">
+  <h1>Almost Done</h1>
+  <p>
+    Enter your information to reserve your selected cleaning time.
+  </p>
+</div>
+
+<div class="card">
+
+<h2>Your booking</h2>
+
+<div class="summary">
+  <div><strong>Estimate:</strong> <span id="contactEstimate"></span></div>
+  <div><strong>Time:</strong> <span id="contactTime"></span></div>
+</div>
+
+<label for="name">Name</label>
+<input id="name" type="text" placeholder="Sarah Johnson">
+
+<label for="email">Email</label>
+<input id="email" type="email" placeholder="sarah@example.com">
+
+<label for="phone">Phone</label>
+<input id="phone" type="tel" placeholder="(512) 555-0123">
+
+<label for="address">Cleaning Address</label>
+<input id="address" type="text" placeholder="123 Main Street">
+
+<button id="bookBtn" type="button">
+  Request This Cleaning Time
+</button>
+
+<button id="backTimesBtn" class="secondary" type="button">
+  Back to Times
+</button>
+
+<div class="demo">
+  Demo only. Information entered here is not transmitted or stored.
+</div>
+
+</div>
+</section>
+
+
+<!-- CONFIRMATION SCREEN -->
+
+<section id="confirmationScreen" class="screen">
+
+<div class="card success">
+
+<div class="success-icon">✓</div>
+
+<h1>Cleaning Request Received</h1>
+
+<p>
+  Thanks, <strong id="confirmName">Sarah</strong>.
+  Your demo cleaning request has been created.
+</p>
+
+<div class="summary">
+  <div><strong>Estimated price:</strong> <span id="confirmEstimate"></span></div>
+  <div><strong>Requested time:</strong> <span id="confirmTime"></span></div>
+</div>
+
+<p>
+  In a live QuotePilot system, the customer would receive an
+  automated confirmation by text or email and the cleaning company
+  would immediately receive the new lead.
+</p>
+
+<button id="restartBtn" type="button">
+  Start Another Estimate
+</button>
+
+<div class="demo">
+  Demonstration only — no appointment was actually booked.
+</div>
+
+</div>
+</section>
+
 </main>
 
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  let bathroom = "2";
-  let bathroomCost = 14;
+document.addEventListener("DOMContentLoaded", function(){
+
+  let bathroom = "2.5";
+  let bathroomCost = 21;
+  let selectedTime = "";
+  let currentEstimate = "";
+
+  const size = document.getElementById("size");
+  const beds = document.getElementById("beds");
+  const service = document.getElementById("service");
+  const frequency = document.getElementById("frequency");
 
   const price = document.getElementById("price");
-  const breakdown = document.getElementById("breakdown");
+  const selection = document.getElementById("selection");
+  const base = document.getElementById("base");
+  const sizeCost = document.getElementById("sizeCost");
+  const bedCost = document.getElementById("bedCost");
+  const bathCost = document.getElementById("bathCost");
+  const addonCost = document.getElementById("addonCost");
+  const discountLine = document.getElementById("discountLine");
 
-  function round5(n) {
-    return Math.round(n / 5) * 5;
+  function money(value){
+    return "$" + Math.round(value);
   }
 
-  function calculate() {
-    const serviceEl = document.getElementById("service");
-    const sizeEl = document.getElementById("size");
-    const bedsEl = document.getElementById("beds");
-    const frequencyEl = document.getElementById("frequency");
+  function calculate(){
 
-    const base = Number(serviceEl.value);
-    const sizeCost = Number(sizeEl.value);
-    const beds = Number(bedsEl.value);
-    const bedCost = Math.max(0, beds - 2) * 10;
+    const serviceBase = Number(service.value);
+    const sizeAdjustment = Number(size.value);
+    const bedrooms = Number(beds.value);
+
+    const bedroomAdjustment =
+      Math.max(0, bedrooms - 2) * 10;
 
     let addons = 0;
-    document.querySelectorAll(".addon:checked").forEach(function(el) {
-      addons += Number(el.value);
+
+    document.querySelectorAll(".addon").forEach(function(item){
+      if(item.checked){
+        addons += Number(item.value);
+      }
     });
 
-    const discount = Number(frequencyEl.value);
-    const subtotal = base + sizeCost + bedCost + bathroomCost + addons;
-    const discounted = subtotal * (1 - discount);
-    const low = round5(discounted);
-    const high = low + 40;
+    const subtotal =
+      serviceBase +
+      sizeAdjustment +
+      bedroomAdjustment +
+      bathroomCost +
+      addons;
 
-    price.textContent = "$" + low + "–$" + high;
+    const discountRate = Number(frequency.value);
+    const discount = subtotal * discountRate;
 
-    breakdown.innerHTML =
-      "<strong>Selection:</strong> " + beds + " bed · " + bathroom + " bath<br>" +
-      "Cleaning base: $" + base + "<br>" +
-      "Home size adjustment: +$" + sizeCost + "<br>" +
-      "Bedroom adjustment: +$" + bedCost + "<br>" +
-      "Bathroom adjustment: +$" + bathroomCost +
-      (addons ? "<br>Add-ons: +$" + addons : "") +
-      (discount ? "<br>Recurring discount: -" + Math.round(discount * 100) + "%" : "");
+    const total = subtotal - discount;
+
+    const low =
+      Math.round(total / 5) * 5;
+
+    const high =
+      low + 40;
+
+    currentEstimate =
+      "$" + low + "–$" + high;
+
+    price.textContent = currentEstimate;
+
+    selection.textContent =
+      bedrooms + " bed · " + bathroom + " bath";
+
+    base.textContent =
+      money(serviceBase);
+
+    sizeCost.textContent =
+      "+$" + sizeAdjustment;
+
+    bedCost.textContent =
+      "+$" + bedroomAdjustment;
+
+    bathCost.textContent =
+      "+$" + bathroomCost;
+
+    addonCost.textContent =
+      "+$" + addons;
+
+    if(discountRate > 0){
+      discountLine.textContent =
+        "Recurring cleaning discount: -$" +
+        Math.round(discount);
+    } else {
+      discountLine.textContent = "";
+    }
   }
 
-  document.querySelectorAll(".bath").forEach(function(card) {
-    card.addEventListener("click", function() {
-      document.querySelectorAll(".bath").forEach(function(x) {
-        x.classList.remove("active");
+  document.querySelectorAll(".bath").forEach(function(card){
+
+    card.addEventListener("click", function(){
+
+      document.querySelectorAll(".bath").forEach(function(item){
+        item.classList.remove("active");
       });
 
       card.classList.add("active");
+
       bathroom = card.dataset.bath;
       bathroomCost = Number(card.dataset.cost);
+
       calculate();
     });
   });
 
-  ["size","beds","service","frequency"].forEach(function(id) {
-    document.getElementById(id).addEventListener("change", calculate);
+  [size,beds,service,frequency].forEach(function(element){
+    element.addEventListener("change", calculate);
   });
 
-  document.querySelectorAll(".addon").forEach(function(el) {
-    el.addEventListener("change", calculate);
+  document.querySelectorAll(".addon").forEach(function(element){
+    element.addEventListener("change", calculate);
   });
+
+
+  function showScreen(screenId){
+
+    document.querySelectorAll(".screen").forEach(function(screen){
+      screen.classList.remove("active");
+    });
+
+    document.getElementById(screenId).classList.add("active");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+  }
+
+
+  document.getElementById("availabilityBtn")
+    .addEventListener("click", function(){
+
+      calculate();
+
+      document.getElementById("bookingEstimate")
+        .textContent = currentEstimate;
+
+      document.getElementById("bookingHome")
+        .textContent =
+        beds.value + " bed · " +
+        bathroom + " bath";
+
+      showScreen("availabilityScreen");
+    });
+
+
+  document.querySelectorAll(".time").forEach(function(time){
+
+    time.addEventListener("click", function(){
+
+      document.querySelectorAll(".time").forEach(function(item){
+        item.classList.remove("selected");
+      });
+
+      time.classList.add("selected");
+      selectedTime = time.dataset.time;
+    });
+  });
+
+
+  document.getElementById("continueBtn")
+    .addEventListener("click", function(){
+
+      if(!selectedTime){
+        alert("Please select an available cleaning time.");
+        return;
+      }
+
+      document.getElementById("contactEstimate")
+        .textContent = currentEstimate;
+
+      document.getElementById("contactTime")
+        .textContent = selectedTime;
+
+      showScreen("contactScreen");
+    });
+
+
+  document.getElementById("backBtn")
+    .addEventListener("click", function(){
+      showScreen("estimateScreen");
+    });
+
+
+  document.getElementById("backTimesBtn")
+    .addEventListener("click", function(){
+      showScreen("availabilityScreen");
+    });
+
+
+  document.getElementById("bookBtn")
+    .addEventListener("click", function(){
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const phone =
+        document.getElementById("phone").value.trim();
+
+      if(!name || !email || !phone){
+        alert("Please enter your name, email, and phone number.");
+        return;
+      }
+
+      document.getElementById("confirmName")
+        .textContent = name.split(" ")[0];
+
+      document.getElementById("confirmEstimate")
+        .textContent = currentEstimate;
+
+      document.getElementById("confirmTime")
+        .textContent = selectedTime;
+
+      showScreen("confirmationScreen");
+    });
+
+
+  document.getElementById("restartBtn")
+    .addEventListener("click", function(){
+
+      selectedTime = "";
+
+      document.querySelectorAll(".time").forEach(function(item){
+        item.classList.remove("selected");
+      });
+
+      showScreen("estimateScreen");
+    });
+
 
   calculate();
+
 });
 </script>
 
