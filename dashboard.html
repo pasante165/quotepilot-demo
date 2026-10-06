@@ -1,1 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuotePilot AI — Owner Dashboard</title>
 
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:18px 20px;
+}
+
+.header-inner{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:850;
+}
+
+.logo span{color:#60a5fa}
+
+.owner-label{
+  font-size:14px;
+  font-weight:700;
+}
+
+main{
+  max-width:900px;
+  margin:auto;
+  padding:28px 18px 70px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+  gap:15px;
+}
+
+.eyebrow{
+  color:#64748b;
+  font-size:14px;
+}
+
+h1{
+  margin:4px 0 0;
+  font-size:32px;
+}
+
+h2{margin-top:0}
+
+.customer-link{
+  display:inline-block;
+  text-decoration:none;
+  background:#e2e8f0;
+  color:#172033;
+  padding:11px 15px;
+  border-radius:11px;
+  font-weight:750;
+  white-space:nowrap;
+}
+
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.metric{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 6px 20px rgba(15,23,42,.06);
+}
+
+.metric-label{
+  color:#64748b;
+  font-size:13px;
+}
+
+.metric-value{
+  font-size:28px;
+  font-weight:850;
+  margin-top:7px;
+}
+
+.blue{color:#2563eb}
+.green{color:#15803d}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 8px 30px rgba(15,23,42,.07);
+  margin-bottom:20px;
+}
+
+.pipeline{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:4px 0 12px;
+}
+
+.stage{
+  white-space:nowrap;
+  padding:9px 12px;
+  border-radius:999px;
+  background:#f1f5f9;
+  font-size:12px;
+  font-weight:750;
+}
+
+.stage.active{
+  background:#2563eb;
+  color:white;
+}
+
+.lead{
+  border:1px solid #e2e8f0;
+  border-radius:15px;
+  padding:17px;
+  margin-top:12px;
+}
+
+.lead-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.name{
+  font-size:18px;
+  font-weight:850;
+}
+
+.price{
+  font-size:18px;
+  font-weight:850;
+  color:#2563eb;
+  white-space:nowrap;
+}
+
+.small{
+  color:#64748b;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:750;
+  margin-top:10px;
+}
+
+.requested{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.followup{
+  background:#ffedd5;
+  color:#c2410c;
+}
+
+.booked{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.follow-box{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  border-radius:14px;
+  padding:17px;
+}
+
+.revenue-box{
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  border-radius:14px;
+  padding:18px;
+}
+
+.revenue{
+  font-size:34px;
+  font-weight:900;
+  color:#15803d;
+  margin:6px 0;
+}
+
+.note{
+  color:#64748b;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.demo{
+  text-align:center;
+  color:#64748b;
+  font-size:12px;
+  margin-top:15px;
+}
+
+@media(max-width:700px){
+  .metrics{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .top{
+    align-items:flex-start;
+  }
+
+  h1{
+    font-size:28px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-inner">
+  <div class="logo">QuotePilot <span>AI</span></div>
+  <div class="owner-label">Owner Portal</div>
+</div>
+</header>
+
+<main>
+
+<div class="top">
+  <div>
+    <div class="eyebrow">Cleaning Business Dashboard</div>
+    <h1>Owner Dashboard</h1>
+  </div>
+
+  <a class="customer-link" href="./">
+    Customer Demo
+  </a>
+</div>
+
+<div class="metrics">
+
+  <div class="metric">
+    <div class="metric-label">New Leads</div>
+    <div class="metric-value">12</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-label">Estimates</div>
+    <div class="metric-value">18</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-label">Bookings</div>
+    <div class="metric-value blue">9</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-label">Estimated Revenue</div>
+    <div class="metric-value green">$2,845</div>
+  </div>
+
+</div>
+
+<div class="card">
+
+<h2>Lead Pipeline</h2>
+
+<div class="pipeline">
+  <div class="stage">New</div>
+  <div class="stage">Contacted</div>
+  <div class="stage active">Booking Requested</div>
+  <div class="stage">Booked</div>
+  <div class="stage">Lost</div>
+</div>
+
+<div class="lead">
+
+<div class="lead-top">
+  <div>
+    <div class="name">Irene</div>
+    <div class="small">
+      irene@example.com · (512) 555-0123
+    </div>
+  </div>
+
+  <div class="price">$385–$425</div>
+</div>
+
+<div class="badge requested">
+  Booking Requested
+</div>
+
+<p class="small">
+  5 bed · 4+ bath · Standard Cleaning
+</p>
+
+<p class="small">
+  <strong>Requested:</strong> Wednesday · 2:30 PM
+</p>
+
+<p class="small">
+  <strong>Address:</strong> 124 Mymuna St
+</p>
+
+</div>
+
+
+<div class="lead">
+
+<div class="lead-top">
+  <div>
+    <div class="name">Marcus T.</div>
+    <div class="small">Website estimate</div>
+  </div>
+
+  <div class="price">$185–$225</div>
+</div>
+
+<div class="badge followup">
+  Follow-up Due
+</div>
+
+<p class="small">
+  3 bed · 2 bath · Standard Cleaning
+</p>
+
+<p class="small">
+  Estimate generated 2 hours ago. No appointment selected.
+</p>
+
+</div>
+
+
+<div class="lead">
+
+<div class="lead-top">
+  <div>
+    <div class="name">Rachel M.</div>
+    <div class="small">Returning customer</div>
+  </div>
+
+  <div class="price">$240</div>
+</div>
+
+<div class="badge booked">
+  Booked
+</div>
+
+<p class="small">
+  Biweekly recurring cleaning
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Automated Lead Recovery</h2>
+
+<p class="note">
+QuotePilot identifies prospects who generated an estimate but
+left before completing a booking.
+</p>
+
+<div class="follow-box">
+
+<strong>Marcus T. — $185–$225 estimate</strong>
+
+<p class="small">
+Customer generated an estimate 2 hours ago but did not select
+a cleaning appointment.
+</p>
+
+<div class="badge followup">
+  Follow-up Scheduled
+</div>
+
+<p class="small">
+Demo workflow: QuotePilot sends a friendly reminder by
+text or email with a direct link back to the customer's estimate.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Recovered Revenue</h2>
+
+<div class="revenue-box">
+
+<div class="small">
+Revenue attributed to QuotePilot automated follow-up
+</div>
+
+<div class="revenue">
+$1,240
+</div>
+
+<div class="small">
+5 previously unbooked leads converted this month
+</div>
+
+</div>
+
+<p class="note">
+Instead of functioning as only a quote calculator,
+QuotePilot helps the business identify unconverted prospects,
+follow up automatically, and measure revenue recovered from
+those leads.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>QuotePilot Activity</h2>
+
+<div class="lead">
+<strong>New booking request</strong>
+<p class="small">
+Irene requested Wednesday at 2:30 PM · $385–$425
+</p>
+</div>
+
+<div class="lead">
+<strong>Lead recovered</strong>
+<p class="small">
+Automated follow-up converted a previously abandoned estimate.
+</p>
+</div>
+
+<div class="lead">
+<strong>Recurring customer booked</strong>
+<p class="small">
+Rachel M. confirmed a biweekly cleaning.
+</p>
+</div>
+
+</div>
+
+<div class="demo">
+QuotePilot AI Owner Dashboard · Demonstration data only
+</div>
+
+</main>
+
+</body>
+</html>
